@@ -5347,7 +5347,7 @@ tbody.collapse.in {
   cursor: not-allowed;
 }
 
-.label {
+/* .label {
   display: inline;
   padding: .2em .6em .3em;
   font-size: 75%;
@@ -5358,16 +5358,16 @@ tbody.collapse.in {
   white-space: nowrap;
   vertical-align: baseline;
   border-radius: .25em;
-}
-.label:empty {
+} */
+/* .label:empty {
   display: none;
-}
-.btn .label {
+} */
+/* .btn .label {
   position: relative;
-  top: -1px;
-}
+  top: -1px; */
+/* } */
 
-a.label:hover, a.label:focus {
+/* a.label:hover, a.label:focus {
   color: #fff;
   text-decoration: none;
   cursor: pointer;
@@ -5413,7 +5413,7 @@ a.label:hover, a.label:focus {
 }
 .label-danger[href]:hover, .label-danger[href]:focus {
   background-color: #c9302c;
-}
+} */
 
 .badge {
   display: inline-block;
@@ -7692,7 +7692,7 @@ figure {
 
 .sf-menu a {  
   color: rgba(255, 255, 255, 0.4);
-  padding: 2.4em 1.3em !important;
+  padding: 2.4em 1.3em ;
   text-transform: uppercase;
   letter-spacing: 1px;
   border-left: none;
@@ -7721,6 +7721,7 @@ figure {
   padding: 0.25em 1em !important;
   letter-spacing: 1px;
 }
+
 
 .sf-menu li:hover a,
 .sf-menu li.sfHover a,
@@ -8429,7 +8430,8 @@ div.cs-select span {
 #fh5co-services-section,
 #fh5co-contact-section,
 #footer {
-  padding: 7em 0;
+  padding: 7em 0 0;
+  
 }
 
 #hotel-facilities {
@@ -8444,11 +8446,14 @@ div.cs-select span {
 #tabs {
   float: left;
   width: 100%;
+  margin-left: 15vw ;
 }
+
 #tabs .tabs-nav {
   border-bottom: 1px solid #f0f0f0;
   float: left;
   width: 100%;
+  
 }
 #tabs .tabs-nav > a {
   float: left;
@@ -8457,7 +8462,6 @@ div.cs-select span {
   font-size: 13px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: #ccc;
   padding: 10px 0 40px 0;
   border-bottom: 1px solid transparent;
   margin-bottom: -1px;
@@ -8465,6 +8469,7 @@ div.cs-select span {
   -webkit-transition: 0.3s;
   -o-transition: 0.3s;
   transition: 0.3s;
+  
 }
 #tabs .tabs-nav > a > .icon {
   margin-bottom: 20px;

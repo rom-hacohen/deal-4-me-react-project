@@ -47,7 +47,7 @@ user.findById = (userId, result) => {
 
     // not found user with the id
     result({ kind: "not_found" }, null);
-  });
+  }); 
 };
 // selecting all users that exsist
 user.getAll = (result) => {

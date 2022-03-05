@@ -1,11 +1,15 @@
 const express = require("express");
+const app = express();
 const bodyParser = require('body-parser');
 const logger = require('morgan');
 var path = require('path');
-// const bodyParser = require("body-parser");
-const cors = require('cors')
-
-const app = express();
+const cors = require('cors');
+const http = require('http').Server(app); ;
+const PORT = process.env.PORT || 3009;
+const io = require("socket.io")(http, {
+  cors: {
+    origin: "*"}
+})
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -13,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 
 app.use('/static', express.static(path.join(__dirname, 'public')))
+
 // parse requests of content-type - application/json
   app.use(express.json());
   app.use(
@@ -21,19 +26,25 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
       methods: "GET,POST,PUT,DELETE",
       credentials: true,
     })
-  );
-// simple route
-// app.get("/", (req, res) => {
-//   res.json({ message: "Welcome to bezkoder application." });
-// });
+  ); 
 
- 
+
+
+  io.on('connection', socket => {
+    socket.on('sendUpdate', (arg) => {
+      console.log(arg);
+      io.emit('getUpdate',true)
+    })
+  })
+  
+
 require("./routes/auth")(app);
 require("./routes/deals")(app);
 require("./routes/admin")(app);
+require("./routes/category")(app);
+require("./routes/follow")(app);
 
 // set port, listen for requests
-const PORT = process.env.PORT || 3009;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}.`);
-});
+
+http.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+

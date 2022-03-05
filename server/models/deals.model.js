@@ -6,14 +6,11 @@ const deal = function (deal) {
   this.state = deal.state;
   this.price = deal.price;
   this.hotelName = deal.hotelName;
-  this.Rating = deal.Rating;
   this.categoryID = deal.categoryID;
   this.Description = deal.Description;
   this.img_src = deal.img_src;
   this.city = deal.city;
-  this.mainland = deal.mainland;
   this.dates = deal.dates
-  this.followers = deal.followers
 };
 
 deal.create = (newDeal, result) => {
@@ -45,9 +42,9 @@ deal.getAll = (result) => {
   });
 };
 
-deal.orderByPrice = (result) => {
+deal.orderByLowerPrice = (result) => {
   sql.query(
-    "select * from deal_4_me.deals order by CAST(price AS Float)  asc",
+    "select * from deal_4_me.deals order by price asc",
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -61,32 +58,22 @@ deal.orderByPrice = (result) => {
   );
 };
 
-deal.findeBymainland = (manland, result) => {
-  sql.query("SELECT * FROM deals WHERE mainland = ?", manland, (err, res) => {
-    if (err) {
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    }
+deal.orderByHigherPrice = (result) => {
+  sql.query(
+    "select * from deal_4_me.deals order by price desc",
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
 
-    console.log("deals: ", res);
-    result(null, res);
-  });
-};
-
-deal.findeByState = (state, result) => {
-  sql.query("SELECT * FROM deals WHERE state = ?", state, (err, res) => {
-    if (err) {
-      console.log(state);
-      console.log("error: ", err);
-      result(null, err);
-      return;
-    } else {
       console.log("deals: ", res);
       result(null, res);
     }
-  });
+  );
 };
+
 
 deal.remove = (id, result) => {
   sql.query("DELETE FROM deals WHERE dealID =  ?", id, (err, res) => {
@@ -111,20 +98,19 @@ deal.remove = (id, result) => {
 //updating one user identified by the userId in the request
 deal.updateById = (id, deal, result) => {
   sql.query(
-    "UPDATE deals SET Title = ? ,  price =? , hotelName = ? , Rating = ? , categoryID = ? , Description = ? , img_src = ? , city = ?, mainkand = ?, dates = ?, followers = ? WHERE dealID = ?",
+    `UPDATE deals SET Title = ? ,state =?,  price =? , hotelName = ?  , categoryID = ? , Description = ? , img_src = ? , city = ?, dates = ?, followers = ? WHERE dealID = ${id} `,
     [
       deal.Title,
+      deal.state,
       deal.price,
       deal.hotelName,
-      deal.Rating,
       deal.categoryID,
       deal.Description,
       deal.img_src,
       deal.city,
-      deal.mainland,
       deal.dates,
-      deal.followers,
-      id,
+      id
+      
     ],
     (err, res) => {
       if (err) {
@@ -144,12 +130,12 @@ deal.updateById = (id, deal, result) => {
   );
 };
 
-deal.updateFollowers = (id, deal, result) => {
+deal.addFollower = (id, deal, result) => {
   sql.query(
-    "UPDATE deals SET followers = ? WHERE dealID = ?",
+    "UPDATE deals SET followers = followers +1 WHERE dealID = ?",
     [
-      deal.followers,
       id,
+      deal.followers,
     ],
     (err, res) => {
       if (err) {
@@ -169,17 +155,44 @@ deal.updateFollowers = (id, deal, result) => {
   );
 };
 
-// SET
-// `dealID` = ?,
-// `Title` =
-// `state` = ?,
-// `price` =?,
-// `hotelName` = ?,
-// `Rating` = ?,
-// `categoryID` = ?,
-// `Description` = ?,
-// `img_src` = ?,
-// `city` = ?,
-// `mainland` = ?
-// WHERE `dealID` = ?;
+
+deal.removeFollower = (id, deal, result) => {
+  sql.query(
+    "UPDATE deals SET followers = followers -1 WHERE dealID = ?",
+    [
+      id,
+      deal.followers,
+    ],
+    (err, res) => {
+      if (err) {
+        console.log("error: ", err);
+        result(null, err);
+        return;
+      }
+      if (res.affectedRows == 0) {
+        // not found user with the id
+        result({ kind: "not_found" }, null);
+        return;
+      }
+      // update sucsses
+      console.log("updated deal: ", { id: id, ...deal });
+      result(null, { id: id, ...deal });
+    }
+  );
+};
+
+deal.findeByCategoryID = (categoryID, result) => {
+  sql.query("SELECT * FROM deals WHERE categoryID= ?", categoryID, (err, res) => {
+    if (err) {
+      console.log(categoryID);
+      console.log("error: ", err);
+      result(null, err);
+      return;
+    } else {
+      console.log("deals: ", res);
+      result(null, res);
+    }
+  });
+};
+
 module.exports = deal;

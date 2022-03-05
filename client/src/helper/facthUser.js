@@ -1,12 +1,12 @@
 import React, { useEffect ,useState } from "react";
-import { getItemFromLocalStorage } from "./localStorageManage";
+import { getItemFromLocalStorage ,deleteFromLocalStorage } from "./localStorageManage";
 
 
 const useFecthUser = () => {
   const [data, setData] = useState(null);
   const URL = "http://localhost:3009";
 
-  const Token = getItemFromLocalStorage("token");
+  const Token = getItemFromLocalStorage("auth-token");
   const ID = getItemFromLocalStorage("User")
     useEffect(async () => {
       await fetch(`${URL}/users/${ID.UserId}`)
@@ -20,7 +20,7 @@ const useFecthUser = () => {
     if (Token) {
       return data
     }
-    else localStorage.clear()
+    else deleteFromLocalStorage('auth-token');
     
 };
 export default useFecthUser;

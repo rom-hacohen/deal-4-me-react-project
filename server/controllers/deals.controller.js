@@ -14,12 +14,11 @@ exports.create = (req, res) => {
       state: req.body.state,
       price: req.body.price,
       hotelName: req.body.hotelName,
-      Rating: req.body.Rating,
       categoryID: req.body.categoryID,
       Description : req.body.Description,
       img_src: req.body.img_src,
       city: req.body.city,
-      mainland: req.body.mainland
+      dates: req.body.dates
     });
     // Save deal in the database
     deal.create(newDeal, (err, data) => {
@@ -45,8 +44,8 @@ exports.findAll = (req, res) => {
     });
   };
 
-  exports.orderByPrice = (req, res) => {
-    deal.orderByPrice((err, data) => {
+  exports.orderByLowerPrice = (req, res) => {
+    deal.orderByLowerPrice((err, data) => {
       if (err)
         res.status(500).send({
           message: err.message || "Some error occurred while retrieving deals.",
@@ -55,38 +54,16 @@ exports.findAll = (req, res) => {
     });
   };
 
-  
-  exports.findeByState = (req, res) => {
-    deal.findeByState(req.body.state, (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found deal with state ${req.body.state}.`,
-          });
-        } else {
-          res.status(500).send({
-            message: "Error retrieving deal with state" + req.body.state,
-          });
-        }
-      } else res.send(data);
+  exports.orderByHigherPrice = (req, res) => {
+    deal.orderByHigherPrice((err, data) => {
+      if (err)
+        res.status(500).send({
+          message: err.message || "Some error occurred while retrieving deals.",
+        }); 
+      else res.send(data);
     });
   };
   
-  exports.findeBymainland= (req, res) => {
-    deal.findeBymainland(req.body.mainland, (err, data) => {
-      if (err) {
-        if (err.kind === "not_found") {
-          res.status(404).send({
-            message: `Not found deal with state ${req.body.mainland}.`,
-          });
-        } else {
-          res.status(500).send({
-            message: "Error retrieving deal with state" + req.body.mainland,
-          });
-        }
-      } else res.send(data);
-    });
-  };
 
 // Delete a deal with the specified dealId in the request
 exports.delete = (req, res) => {
@@ -131,8 +108,8 @@ exports.update = (req, res) => {
   });
 };
 
-exports.updateFollowers = (req, res) => {
-deal.updateFollowers(req.params.dealId, new deal(req.body), (err, data) => {
+exports.addFollower = (req, res) => {
+deal.addFollower(req.params.dealId, new deal(req.body), (err, data) => {
   if (err) {
     if (err.kind === "not_found") {
       res.status(404).send({
@@ -145,4 +122,38 @@ deal.updateFollowers(req.params.dealId, new deal(req.body), (err, data) => {
     }
   } else res.send(data);
 });
+};
+
+
+exports.removeFollower = (req, res) => {
+  deal.removeFollower(req.params.dealId, new deal(req.body), (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found deal with id ${req.params.dealId}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error updating deal with id " + req.params.dealId,
+        });
+      }
+    } else res.send(data);
+  });
+  };
+  
+
+exports.findeByCategoryID = (req, res) => {
+  deal.findeByCategoryID(req.params.categoryID, (err, data) => {
+    if (err) {
+      if (err.kind === "not_found") {
+        res.status(404).send({
+          message: `Not found deal with categoryID ${req.params.categoryID}.`,
+        });
+      } else {
+        res.status(500).send({
+          message: "Error retrieving deal with categoryID" + req.params.categoryID,
+        });
+      }
+    } else res.send(data);
+  });
 };

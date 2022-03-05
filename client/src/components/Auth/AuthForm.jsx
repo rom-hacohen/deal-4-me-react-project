@@ -34,7 +34,7 @@ const AuthForm = () => {
       })
         .then(async (response) => {
           if (response.ok) {
-           const json = await response.json();
+          const json = await response.json();
           await setUser(json.data[0]);
            settoken(json.Token);
           }
@@ -76,7 +76,8 @@ const AuthForm = () => {
         setErrorMessage('email or password are incorrect')
         throw new Error('email or password are incorrect');
       }
-    }).catch((error) => {
+    })
+    .catch((error) => {
       console.log(error);
     });
   } 
@@ -85,24 +86,25 @@ const AuthForm = () => {
     throw errorMessage;
   }
   }
+
+
   if (token !== null && User !== null) {
     console.log(token);
-    setItemToLocalStorage('token',token)
+    setItemToLocalStorage('auth-token',token)
     setItemToLocalStorage('User',{
       UserId:User.userID,
       Email:User.email, 
     })
     setItemToLocalStorage('isAuth',true)
+
     if (User.admin === 1 ) {
       navigate('/')
     }
-    else if(User.admin === 0 ) navigate('/Admin')
+    else if(User.admin === 0 ) navigate('/THEAdmin')
 
     else navigate('/')
   }
-  // else if(token === undefined){
-  //   localStorage.clear()
-  // }
+
 
 console.log(User);
 console.log(token);
@@ -128,7 +130,7 @@ console.log(token);
               <option value="New-York">New-York</option>
               <option value="Other">Other</option>
             </select> 
-            <button type="submit" className="REbutton" onClick={()=>signUp()}>Sign up</button>
+            <button type="submit" className="MYbutton REbutton" onClick={()=>signUp()}>Sign up</button>
           </form>
         </div>
         <div className="login">
@@ -136,7 +138,7 @@ console.log(token);
             <label htmlFor="chk" aria-hidden="true">Login</label>
             <input value={email} ref={emailEx} onChange={(e) => setEmail(e.target.value)} type='email' id='LoginEmail' placeholder="Email" required />
             <input value={password} onChange={(e) => setPassword(e.target.value)} type='password' id='LoginPassword' placeholder="Password" autoComplete="on" required />
-            <button className="REbutton" type="submit" onClick={() => signIn()}>login</button>
+            <button className="MYbutton REbutton" type="submit" onClick={() => signIn()}>login</button>
             {errorMessage && (
               <p className="alert alert-danger">{errorMessage}</p>
             )}

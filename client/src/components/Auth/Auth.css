@@ -67,7 +67,7 @@ label{
 	transition: .2s ease-in;
 	cursor: pointer;
 } 
-button:hover{
+.MYbutton:hover{
 	background: #6d44b8;
 }
 .login{

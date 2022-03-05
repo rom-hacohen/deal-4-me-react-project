@@ -17,7 +17,7 @@ module.exports = (app) => {
   app.delete("/users/:userId", users.delete); //controller.method
 
 // Retrieve a single user with userId - "/http://127.0.0.1:3009/users/name"
-  app.get("/users/findByName/:name", users.findOneByName)
+  app.get("/users/findByEmail", users.findByEmail)
 
 // ALL DEALS CRUD FOR ADMIN
 

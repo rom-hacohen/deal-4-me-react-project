@@ -16,16 +16,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.static(__dirname + "/public"));
 
 // parse requests of content-type - application/json
   app.use(express.json());
   app.use(
-    cors({
-      origin: "http://localhost:3000",
-      methods: "GET,POST,PUT,DELETE",
-      credentials: true,
-    })
+    cors()
   ); 
 
 

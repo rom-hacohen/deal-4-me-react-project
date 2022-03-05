@@ -100,7 +100,7 @@ const AuthForm = () => {
     if (User.admin === 1 ) {
       navigate('/')
     }
-    else if(User.admin === 0 ) navigate('/THEAdmin')
+    else if(User.admin === 0 ) navigate('/AdminDeals')
 
     else navigate('/')
   }

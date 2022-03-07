@@ -8,7 +8,7 @@ const AllProdacts = ({socket}) => {
     const { User, setUser } = useContext(UserContext);
     const [isFollowd, setisFollowd] = useState([]);
     const navigate = useNavigate();
-    const URL = "http://localhost:3009";
+    const URL = "https://deal-4-me.herokuapp.com";
     const [socketMsg, setSocketMsg] = useState(false)
     const [render, setrender] = useState(false)
      
@@ -106,7 +106,7 @@ const AllProdacts = ({socket}) => {
             Followed!  <i className="ti-angle-right"></i>
           </button>
         )
-      }
+        }
    
       else{ return(<button
         onClick={() => followDeal(id)}
@@ -116,7 +116,7 @@ const AllProdacts = ({socket}) => {
       </button>)}
     };
   
-  
+  console.log(deals);
     return (
       <div id="hotel-facilities">
         <div className="container">
@@ -144,10 +144,10 @@ const AllProdacts = ({socket}) => {
         <div className="container">
           <div className="feature-full-2col">
             <div className="row">
-              {deals.map((x, ind) => (
+              {deals.length > 0  && deals.map((x, ind) => (
                 <div className="f-hotel" key={ind} style={{marginBottom:15}}>
                   <div
-                    className="image"
+                    className="image"   
                     style={{ backgroundImage: `url(${x.img_src})` }}
                   >
                     <div className="descrip text-center">
@@ -166,7 +166,7 @@ const AllProdacts = ({socket}) => {
                     <p>{x.Description}</p>
                     <h4> Dates: {x.dates}</h4>
                         <p>
-                          {User ?
+                          {User !== null ?
                           (
                        <>
                         {checkDeal(x.dealID)}

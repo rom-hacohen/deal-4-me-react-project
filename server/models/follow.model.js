@@ -65,7 +65,7 @@ FollowDeal.comperByUserID =(userID, result)=>{
 
     FollowDeal.create = (newFollow, result) => {
         sql.query(
-          "INSERT INTO `deal_4_me`.`followdeals` SET ?",
+          "INSERT INTO followdeals SET ?",
           newFollow,
           (err, dataRes) => {
             if (err) {
@@ -81,7 +81,7 @@ FollowDeal.comperByUserID =(userID, result)=>{
 
 
       FollowDeal.remove = (id, result) => {
-        sql.query("DELETE FROM followdeals WHERE followID =  ?", id, (err, res) => {
+        sql.query("DELETE FROM followdeals WHERE followID =   ?", id, (err, res) => {
           if (err) {
             console.log("error: ", err);
             result(null, err);

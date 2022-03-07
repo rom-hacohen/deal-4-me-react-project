@@ -15,7 +15,7 @@ const { io } = require("socket.io-client");
 
 function App() {
   const [User, setUser] = useState(null);
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
   const socket = io.connect(URL);
 
   return (

@@ -30,7 +30,8 @@ const TemNavBAr = () => {
   useEffect(() => {
     CheckAuth();
   });
-
+  console.log(User);
+  console.log(AuthUser);
   return (
     <>
       <div id="fh5co-header">
@@ -41,11 +42,11 @@ const TemNavBAr = () => {
                 <i></i>
               </a>
               <h1 id="fh5co-logo">
-                <a href="/">DEAL-4-ME</a>
+                <Link to="/"><a>DEAL-4-ME</a></Link>
               </h1>
               <nav id="fh5co-menu-wrap" role="navigation">
                 <ul className="sf-menu" id="fh5co-primary-menu">
-                  {User ? (
+                  {User !== null ? (
                     <li className="active">
                       {User.admin == 0 ?(<a> {User.first_name}- admin</a>):(<a> {User.first_name}</a>)}
                       

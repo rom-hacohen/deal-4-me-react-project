@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
 import { UserContext } from "../../helper/UserContext";
+import { Link } from "react-router-dom";
 
 const Header = () => {
 
 	const { User, setUser } = useContext(UserContext);
-
+console.log(User);
   return (
     <li style={{ backgroundImage: "url(/images/slider1.jpg)", height: 600 }}>
       <div className="overlay-gradient">
@@ -13,7 +14,7 @@ const Header = () => {
             <div className="slider-text-inner js-fullheight">
               <div className="desc">
 
-                {User ? (<>
+                {User !==null ? (<>
 					<p>
                   <span>WELCOM {User.first_name}</span>
                 </p>
@@ -27,9 +28,10 @@ const Header = () => {
                     <h2>Find your next vasction</h2>
                     <p>Don't have an account yet?</p>
                     <p>
-                      <a href="AuthForm" className="btn btn-primary btn-lg">
-                        Sign up
+                    <Link to="/AuthForm"><a className="btn btn-primary btn-lg">
+                        Sign up 
                       </a>
+                      </Link>
                     </p>
                   </>
                 )}

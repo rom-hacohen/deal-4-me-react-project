@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 // const { io } = require("socket.io-client");
 
 const AdminDeals = ({socket}) => { 
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
   const [deals, setdeals] = useState([]);
   const [SelectDeal, setSelectDeal] = useState(null);
   const [show, setShow] = useState(false);
@@ -59,7 +59,7 @@ const AdminDeals = ({socket}) => {
             console.log(json);
             setrender(true)
             socket.emit("sendUpdate",false)
-            handleClose()
+            handleCloseUpdate()
         }
       })
         .catch((error) => {

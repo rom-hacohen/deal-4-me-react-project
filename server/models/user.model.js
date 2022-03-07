@@ -14,7 +14,7 @@ const user = function (user) {
 
 user.create = (newuser, result) => {
   sql.query(
-    "INSERT INTO `deal_4_me`.`users` SET ?",
+    "INSERT INTO users SET ?",
     newuser,
     (err, dataRes) => {
       if (err) {

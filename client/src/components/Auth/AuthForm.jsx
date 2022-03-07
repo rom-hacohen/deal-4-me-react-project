@@ -20,7 +20,7 @@ const AuthForm = () => {
     e.preventDefault();
   };
 
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
 
   const signIn = async () => {
     const Logindata = { email: email, password: password };

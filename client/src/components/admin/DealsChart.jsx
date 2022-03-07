@@ -2,7 +2,7 @@ import React , {useState ,useEffect} from 'react'
 import BarChart from "../admin/BarChart";
 
 const DealsChart = () => {
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
   const [deals, setdeals] = useState([])
   const [render, setrender] = useState(false)
 

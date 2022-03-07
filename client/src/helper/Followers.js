@@ -1,6 +1,6 @@
 
  export const addFollower = (dealID) => {
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
     fetch(`${URL}/deals/addFollower/${dealID}`, {
       method: "PUT",
       headers: {
@@ -19,7 +19,7 @@
 };
 
 export const removeFollowerFromDeal = (dealID) => {
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
     fetch(`${URL}/deals/removeFollower/${dealID}`, {
       method: "PUT",
       headers: {
@@ -41,7 +41,7 @@ export const removeFollowerFromDeal = (dealID) => {
   
 
 export const deleteFollowr = (id)=>{
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
   fetch(`${URL}/followDeals/${id}`, {
       method: "DELETE",
     })

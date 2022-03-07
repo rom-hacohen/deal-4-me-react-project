@@ -10,7 +10,7 @@ export const Pro = ({socket}) => {
   const { User, setUser } = useContext(UserContext);
   const [isFollowd, setisFollowd] = useState([]);
   const navigate = useNavigate();
-  const URL = "http://localhost:3009";
+  const URL = "https://deal-4-me.herokuapp.com";
   const [socketMsg, setSocketMsg] = useState(false)
   const [render, setrender] = useState(false)
    
@@ -91,14 +91,14 @@ console.log(socketMsg);
     const checkDeal = (id)=>{
     const exsist = isFollowd.find(obj => obj.dealID === id)
     if (exsist && User !== null) {
-      console.log(exsist);
+      console.log(exsist); 
      return (
         <button className="btn btn-dark btn-luxe-primary">
           Followed!  <i className="ti-angle-right"></i>
         </button>
       )
     }
- 
+  
     else{ return(<button
       onClick={() => followDeal(id)}
       className="btn btn-primary btn-luxe-primary"
@@ -120,7 +120,8 @@ console.log(socketMsg);
         </div>
         <div id="tabs">
           <nav className="tabs-nav">
-            {catedory.map((cat, i) => (
+           
+            {!!catedory.length&& catedory.map((cat, i) => (
               <a key={i} onClick={() => setSelectCatedory(cat.categoryID)}>
                 <i className="bi bi-star-fill fs-1 "></i>
                 <span>{cat.categoryName}</span>
@@ -133,7 +134,7 @@ console.log(socketMsg);
       <div className="container">
         <div className="feature-full-2col">
           <div className="row">
-            {deals.map((x, ind) => (
+            {!!deals.length && deals.map((x, ind) => (
               <div className="f-hotel" key={ind}>
                 <div
                   className="image"
@@ -168,6 +169,7 @@ console.log(socketMsg);
                 </div>
               </div>
             ))}
+
             </div>
           </div>
         </div>

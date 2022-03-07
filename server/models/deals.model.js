@@ -15,7 +15,7 @@ const deal = function (deal) {
 
 deal.create = (newDeal, result) => {
   sql.query(
-    "INSERT INTO `deal_4_me`.`deals` SET ?",
+    "INSERT INTO  deals SET ?",
     newDeal,
     (err, dataRes) => {
       if (err) {
@@ -44,7 +44,7 @@ deal.getAll = (result) => {
 
 deal.orderByLowerPrice = (result) => {
   sql.query(
-    "select * from deal_4_me.deals order by price asc",
+    "SELECT * FROM deals order by price asc",
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -60,7 +60,7 @@ deal.orderByLowerPrice = (result) => {
 
 deal.orderByHigherPrice = (result) => {
   sql.query(
-    "select * from deal_4_me.deals order by price desc",
+    "SELECT * FROM deals order by price desc",
     (err, res) => {
       if (err) {
         console.log("error: ", err);

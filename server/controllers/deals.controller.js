@@ -91,7 +91,6 @@ exports.update = (req, res) => {
     });
   }
 
-  console.log(req.body);
 
   deal.updateById(req.params.dealId, new deal(req.body), (err, data) => {
     if (err) {

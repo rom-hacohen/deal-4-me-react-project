@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 const Header = () => {
 
 	const { User, setUser } = useContext(UserContext);
-console.log(User);
   return (
     <li style={{ backgroundImage: "url(/images/slider1.jpg)", height: 600 }}>
       <div className="overlay-gradient">
@@ -16,16 +15,16 @@ console.log(User);
 
                 {User !==null ? (<>
 					<p>
-                  <span>WELCOM {User.first_name}</span>
+                  <span>WELCOME {User.first_name}</span>
                 </p>
-                  <h2 style={{marginBottom:"3em"}}>Find your next vasction</h2>
+                  <h2 style={{marginBottom:"3em"}}>Find your next vacation</h2>
 				</>
                 ) : (
                   <>
 				  <p>
-                  <span>WELCOM</span>
+                  <span>WELCOME</span>
                 </p>
-                    <h2>Find your next vasction</h2>
+                    <h2>Find your next vacation</h2>
                     <p>Don't have an account yet?</p>
                     <p>
                     <Link to="/AuthForm"><a className="btn btn-primary btn-lg">

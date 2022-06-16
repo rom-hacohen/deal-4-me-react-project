@@ -44,8 +44,6 @@ const AdminDeals = ({socket}) => {
     
     const updateDael =  async(id)=>{
      const UpadateData = {Title : Title,state:state,price:price,hotelName:hotelName,categoryID:category,Description:Description,img_src:image,city:city,dates:dates};
-      console.log(JSON.stringify(UpadateData));   
-      console.log(id);
      fetch(`${URL}/deals_manage/${id}`, {
         method: "PUT",
         headers: {
@@ -106,7 +104,6 @@ const AdminDeals = ({socket}) => {
   const creatDeal = ()=>{
     if (image !=="") {
       const data = {Title:Title,state:state,price:price,hotelName:hotelName,categoryID:category,Description:Description,img_src:image,city:city,dates:dates};
-      console.log(data);
     fetch(`${URL}/deals_manage`,{
       method: "POST",
       headers: {

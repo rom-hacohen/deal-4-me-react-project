@@ -1945,7 +1945,7 @@ pre code {
 }
 
 .container {
-  margin-right: auto;
+  margin-right: auto; 
   margin-left: auto;
   padding-left: 20px;
   padding-right: 20px;
@@ -8471,6 +8471,15 @@ div.cs-select span {
   transition: 0.3s;
   
 }
+
+@media screen and (max-width: 992px) {
+.tabs-nav > a >span{
+  padding-right: 10%;
+font-size: x-small ;
+}
+}
+
+
 #tabs .tabs-nav > a > .icon {
   margin-bottom: 20px;
   -webkit-transition: 0.3s;
@@ -9063,15 +9072,15 @@ input[type="text"] {
 }
 
 .fh5co-nav-toggle {
-  margin-top: -8px !important;
+  margin-top: -8px;
   cursor: pointer;
   text-decoration: none;
 }
 .fh5co-nav-toggle.active i::before, .fh5co-nav-toggle.active i::after {
-  background: #000;
+  background: #fff;
 }
 .fh5co-nav-toggle.dark.active i::before, .fh5co-nav-toggle.dark.active i::after {
-  background: #000;
+  background: #fff;
 }
 .fh5co-nav-toggle:hover, .fh5co-nav-toggle:focus, .fh5co-nav-toggle:active {
   outline: none;
@@ -9085,18 +9094,18 @@ input[type="text"] {
   *display: inline;
   width: 30px;
   height: 2px;
-  color: #000;
+  color: #fff;
   font: bold 14px/.4 Helvetica;
   text-transform: uppercase;
   text-indent: -55px;
-  background: #000;
+  background: #fff;
   transition: all .2s ease-out;
 }
 .fh5co-nav-toggle i::before, .fh5co-nav-toggle i::after {
   content: '';
   width: 30px;
   height: 2px;
-  background: #000;
+  background: #fff;
   position: absolute;
   left: 0;
   -webkit-transition: 0.2s;
@@ -9105,12 +9114,12 @@ input[type="text"] {
 }
 .fh5co-nav-toggle.dark i {
   position: relative;
-  color: #000;
-  background: #000;
+  color: #fff;
+  background: #fff;
   transition: all .2s ease-out;
 }
 .fh5co-nav-toggle.dark i::before, .fh5co-nav-toggle.dark i::after {
-  background: #000;
+  background: #fff;
   -webkit-transition: 0.2s;
   -o-transition: 0.2s;
   transition: 0.2s;
@@ -9168,9 +9177,17 @@ input[type="text"] {
   .fh5co-nav-toggle {
     display: block;
     top: 0px;
+    
   }
 }
 
+@media screen and (max-width:768px) {
+  .fh5co-nav-toggle i{
+    display: block;
+    top: 10px;
+    right: 70px;
+  }
+}
 @media screen and (max-width: 480px) {
   .col-xxs-12 {
     float: none;

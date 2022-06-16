@@ -20,7 +20,6 @@ exports.create = (req, res) => {
         err.message || "Some error occurred while creating the deal.",
     });
   else res.send(data);
-  console.log(data);
 });
 }
 

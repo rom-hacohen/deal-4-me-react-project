@@ -23,7 +23,6 @@ user.create = (newuser, result) => {
         return;
       }  
       else{
-      console.log("created user: ", { userID: dataRes.insertId, ...newuser });
       result(null, { userID: dataRes.insertId, ...newuser });
       }
       // result(null, { id: 1,first_name:"...",last_name:"...",email:"em@ail.com",password:"...",staet:"israel"});

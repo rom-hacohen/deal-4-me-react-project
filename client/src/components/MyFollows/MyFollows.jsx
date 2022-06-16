@@ -25,16 +25,10 @@ const MyFollows = () => {
     setrender(false);
   }, [FollowDeals]);
 
-
-  console.log(FollowDeals);
-  console.log(User);
-  console.log(Loding);
-
   const deleteFromData = (id, dealID) => {
     deleteFollowr(id);
     removeFollowerFromDeal(dealID);
     setrender(true);
-    console.log(FollowDeals);
   };
 
 if (Loding ) return <Footer/>

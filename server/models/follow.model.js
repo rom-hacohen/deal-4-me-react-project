@@ -20,7 +20,6 @@ FollowDeal.getAll = (result) => {
 FollowDeal.getByUserID =(userID, result)=>{
 sql.query(`SELECT * FROM followdeals WHERE userID= ${userID}`, (err, res) => {
     if (err) {
-        console.log(userID);
         console.log("error: ", err);
         result(null, err);
         return;
@@ -52,7 +51,6 @@ FollowDeal.getByDealID =(dealID, result)=>{
 FollowDeal.comperByUserID =(userID, result)=>{
   sql.query(`SELECT * FROM deals join followdeals on followdeals.dealID = deals.dealID where userID = ${userID}`, (err, res) => {
       if (err) {
-          console.log(userID);
           console.log("error: ", err);
           result(null, err);
           return;

@@ -22,8 +22,6 @@ const useFecthUser = () => {
         userFeach()
       }, [])
       
-console.log(ID);  
-console.log(data);
     if (Token) {
       return data
     }

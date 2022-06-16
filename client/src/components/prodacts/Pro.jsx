@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../helper/UserContext";
 import { useNavigate } from "react-router-dom";
 import {addFollower} from "../../helper/Followers";
+import { Link } from "react-router-dom";
 
 export const Pro = ({socket}) => {
   const [deals, setdeals] = useState([]);
@@ -16,15 +17,10 @@ export const Pro = ({socket}) => {
    
   useEffect(() =>{
     console.log(socket.on('getUpdate',msg=>{
-     console.log(msg);
      setSocketMsg(true)
       setrender(true)
-     console.log('renser'); 
     }));
    }, [socket]) 
-  
-    
-console.log(socketMsg);
 
 
   useEffect(async() => {
@@ -91,7 +87,6 @@ console.log(socketMsg);
     const checkDeal = (id)=>{
     const exsist = isFollowd.find(obj => obj.dealID === id)
     if (exsist && User !== null) {
-      console.log(exsist); 
      return (
         <button className="btn btn-dark btn-luxe-primary">
           Followed!  <i className="ti-angle-right"></i>
@@ -109,18 +104,17 @@ console.log(socketMsg);
 
 
   return (
-    <div id="hotel-facilities">
+  <div style={{padding: '7em 0 0'}}>
       <div className="container">
         <div className="row">
           <div className="col-md-12">
             <div className="section-title text-center">
-              <h2>deals catalog</h2>
+            <h2><strong>deals catalog</strong></h2>
             </div>
           </div>
         </div>
         <div id="tabs">
           <nav className="tabs-nav">
-           
             {!!catedory.length&& catedory.map((cat, i) => (
               <a key={i} onClick={() => setSelectCatedory(cat.categoryID)}>
                 <i className="bi bi-star-fill fs-1 "></i>
@@ -129,13 +123,13 @@ console.log(socketMsg);
             ))}
           </nav>
         </div>
-      </div>
+      </div> 
 
       <div className="container">
         <div className="feature-full-2col">
           <div className="row">
             {!!deals.length && deals.map((x, ind) => (
-              <div className="f-hotel" key={ind}>
+              <div className="f-hotel" key={ind}  >
                 <div
                   className="image"
                   style={{ backgroundImage: `url(${x.img_src})` }}
@@ -147,7 +141,7 @@ console.log(socketMsg);
                     </p>
                   </div>
                 </div>
-                <div className="desc" style={{ background: "#e6e6e6" }}>
+                <div className="desc" style={{ background: "#e6e6e6"}}>
                   <h1>{x.Title}</h1>
                   <br />
                   <h2><strong style={{textTransform:"uppercase"}}>{x.state}</strong></h2><br/>
@@ -163,13 +157,12 @@ console.log(socketMsg);
                       </>
                       ):(
                         <button className="btn btn-primary btn-luxe-primary" >
-                        <a href="/AuthForm" style={{color:"white"}}>signin to follow deal</a>
-                        </button>)}
+                        <Link to="/AuthForm"><a style={{color:"white"}}>signin to follow deal</a></Link>
+                      </button>)}
                       </p>
                 </div>
               </div>
             ))}
-
             </div>
           </div>
         </div>

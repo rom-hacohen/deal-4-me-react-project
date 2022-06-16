@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { UserContext } from "../../helper/UserContext";
 import { useNavigate } from "react-router-dom";
 import {addFollower} from "../../helper/Followers";
+import { Link } from "react-router-dom";
 
 const AllProdacts = ({socket}) => {
     const [deals, setdeals] = useState([]);
@@ -14,17 +15,12 @@ const AllProdacts = ({socket}) => {
      
     useEffect(() =>{
       console.log(socket.on('getUpdate',msg=>{
-       console.log(msg);
        setSocketMsg(true)
         setrender(true)
-       console.log('renser'); 
       }));
      }, [socket]) 
     
-      
-  console.log(socketMsg);
-  
-  
+        
     useEffect(async() => {
       if(User !== undefined){
       await fetch(`${URL}/followDeals/user/${User.userID}`)
@@ -100,7 +96,6 @@ const AllProdacts = ({socket}) => {
       const checkDeal = (id)=>{
       const exsist = isFollowd.find(obj => obj.dealID === id)
       if (exsist && User !== null) {
-        console.log(exsist);
        return (
           <button className="btn btn-dark btn-luxe-primary">
             Followed!  <i className="ti-angle-right"></i>
@@ -116,24 +111,23 @@ const AllProdacts = ({socket}) => {
       </button>)}
     };
   
-  console.log(deals);
     return (
-      <div id="hotel-facilities">
+      <div>
         <div className="container">
           <div className="row">
             <div className="col-md-12">
               <div className="section-title text-center">
-                <h2>all deals</h2>
+                <h2><strong>all deals</strong></h2>
               </div>
             </div>
           </div>
-          <div id="tabs">
+          <div id="tabs"> 
                 <nav className="tabs-nav">
-                <a onClick={()=>orderByLowerPrice()} style={{marginLeft:100}}>
+                <a onClick={()=>orderByLowerPrice()} style={{marginLeft:'10%'}}>
                   <i className="bi bi-star-fill fs-1 "></i>
                   <span>order by lower pirce</span>
                 </a>
-                <a onClick={()=>orderByHigherPrice()} style={{marginLeft:150}}>
+                <a onClick={()=>orderByHigherPrice()} style={{marginLeft:"20%"}}>
                   <i className="bi bi-star-fill fs-1 "></i>
                   <span>order by Higher pirce</span>
                 </a>
@@ -173,8 +167,8 @@ const AllProdacts = ({socket}) => {
                         </>
                         ):(
                           <button className="btn btn-primary btn-luxe-primary" >
-                          <a href="/AuthForm" style={{color:"white"}}>signin to follow deal</a>
-                          </button>)}
+                          <Link to="/AuthForm"><a style={{color:"white"}}>signin to follow deal</a></Link>
+                        </button>)}
                         </p>
                   </div>
                 </div>

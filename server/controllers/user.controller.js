@@ -80,8 +80,6 @@ exports.update = (req, res) => {
     });
   }
 
-  console.log(req.body);
-
   user.updateById(req.params.userId, new user(req.body), (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
@@ -133,15 +131,12 @@ exports.findOneByName = (req, res) => {
 
 exports.signin = (req, res) => {
   user.signin(req.body.email, req.body.password, (err, data) => {
-    console.log(data); 
       if (data == null) { 
         res.status(404).send({
           message: "email or password are incorrect",
         });
       }
       else {
-      // if (data.admin == 0){console.log('admin');}
-      // else console.log('user');
       res.status(200).send({data,Token:token});
     }
 

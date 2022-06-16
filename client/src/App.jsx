@@ -26,7 +26,7 @@ function App() {
         <Route path="AdminDeals" element={<AdminDeals  socket={socket}/>} />
         <Route path="MyFollows" element={<MyFollows/>} />
         <Route path="/" element={<Home socket={socket}/>} />
-        <Route path="AuthForm" element={<AuthForm />} />
+        <Route path="AuthForm" element={<AuthForm/>} />
         <Route path="AdminChart" element={<DealsChart/>}/>
         <Route path="About" element={<About/>}/>
       </Routes> 

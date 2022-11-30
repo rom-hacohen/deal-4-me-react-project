@@ -32,7 +32,6 @@ const DealsChart = () => {
     .then(async (response) => {
       if (response.ok) {
         const json = await response.json();
-        console.log(json);
         setdeals(json)
         setrender(true)
       }})

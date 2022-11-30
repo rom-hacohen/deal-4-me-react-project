@@ -59,7 +59,6 @@ export const Pro = ({socket}) => {
         followers: +1,
         user_follow: 1,
       };
-      console.log(data);
       if (data.userID !== null && data.dealID !== null) {
         addFollower(dealID);
         setisFollowd([...isFollowd, data]);
@@ -73,7 +72,6 @@ export const Pro = ({socket}) => {
           .then(async (response) => {
             if (response.ok) {
               const json = await response.json();
-              console.log(json);
             }
           })
           .catch((error) => {
